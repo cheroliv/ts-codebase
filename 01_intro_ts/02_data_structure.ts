@@ -46,8 +46,6 @@ let writers: (String | String | String | Number)[][] = [
     ["Domenico","Losurdo","it",20],
 ];
 
-// console.table(writers);
-
 
 // Objects
 let author: {
@@ -65,8 +63,8 @@ let author: {
 
 
 // assertion sur la valeur en accés par encapsulation(dot)
-console.assert(author.first_name === "Antonio")
-console.assert(author.last_name === "Gramsci")
+console.assert(author.first_name === "Domenico")
+console.assert(author.last_name === "Losurdo")
 console.assert(author.lang === "it")
 console.assert(author.century === 20);
 

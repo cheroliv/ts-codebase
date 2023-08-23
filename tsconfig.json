@@ -1,0 +1,13 @@
+{
+  /* Visit https://aka.ms/tsconfig to read more about this file */
+  "compileOnSave": true,
+
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "CommonJS",
+    "noEmitOnError": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true
+  }
+}
