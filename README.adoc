@@ -1,3 +1,6 @@
 = Introduction à Typescript
 
 https://cheroliv.github.io/blog/2023/0063_memo_ts_post.html[Mémo Typescript, window="_blank"]
+
+pistes:
+* https://www.typescriptlang.org/docs/handbook/dom-manipulation.html[dom-manipulation, window="_blank"]
