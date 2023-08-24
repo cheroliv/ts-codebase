@@ -99,3 +99,5 @@ class Square extends Rectangle {
 //interface signature sans nom
 
 //Interface et Arrays
+
+//namespace
