@@ -1,6 +1,3 @@
-// https://rapidapi.com/guides/node-fetch-typescript
-// https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
-
 const fetchPokemonList = async (): Promise<any> => {
     const apiUrl = 'https://pokeapi.co/api/v2/ability/?limit=20&offset=20';
 
@@ -43,8 +40,4 @@ export const fetchAndLogPokemonList = async () => {
     }
 };
 
-// Utilisation de la fonction asynchrone avec await en appelant la constante
-//   fetchAndLogPokemonList();
-
-// https://pokeapi.co/api/v2/ability/21 => {id,name,{names:{"language": { name, url}}}
-
+fetchAndLogPokemonList();
