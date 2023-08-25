@@ -15,11 +15,6 @@ const fetchPokemonList = async (): Promise<any> => {
     }
 };
 
-const extract_id_from_url = (url: String): Number => parseInt(
-    url.replace("https://pokeapi.co/api/v2/ability/", "")
-        .replace("/", "")
-)
-
 /**
  * min id pokemon 1
  * max id pokemon 299
@@ -27,10 +22,10 @@ const extract_id_from_url = (url: String): Number => parseInt(
 
 export const fetchAndLogPokemonList = async () => {
     try {
-        console.log("Liste des Pokémon du Pokédex: $name, $url");
         (await fetchPokemonList())
             .map((it: { name: String; url: String; }) => [
-                extract_id_from_url(it.url), it.name
+                parseInt(it.url.replace("https://pokeapi.co/api/v2/ability/", "")
+                    .replace("/", "")), it.name
             ])
             .forEach((element: Array<String | Number>) => {
                 console.log(element[0] + ", " + element[1]);
