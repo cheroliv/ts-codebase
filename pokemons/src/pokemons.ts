@@ -26,8 +26,9 @@ setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
 
 type Result<T, E> = { type: 'success'; value: T } | { type: 'error'; error: E };
 
-const fetchPokemonList = async (cursor: Cursor): Promise<Result<any[], string>> => {
-  return fetch(`https://pokeapi.co/api/v2/ability/?limit=${cursor.limit}&offset=${cursor.offset}`)
+
+const fetchPokemonList = async (): Promise<Result<any[], string>> => {
+  return fetch(`https://pokeapi.co/api/v2/ability/?limit=358&offset=0`)
     .then(response => response.ok
       ? response.json()
       : Promise.reject(`Network response was not ok: ${response.status}`)
@@ -36,15 +37,14 @@ const fetchPokemonList = async (cursor: Cursor): Promise<Result<any[], string>> 
     .catch(error => ({ type: 'error', error: error.message }));
 };
 
-export interface Pokemon {
+interface Pokemon {
   id: Number;
   name: String;
 };
 
-const fetch_pokemons = async (cursors: Array<Cursor>): Promise<Array<Pokemon>> => {
+const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
   let pokemons: Array<Pokemon> = []
-  //  cursors.forEach(cursor => {
-  await fetchPokemonList(cursors[0])
+  await fetchPokemonList()
     .then(result => result.type === 'success'
       ? result.value.map((it: { name: string; url: string }) => [
         parseInt(it
@@ -62,30 +62,15 @@ const fetch_pokemons = async (cursors: Array<Cursor>): Promise<Array<Pokemon>> =
     }).catch(error => {
       console.error('Une erreur s\'est produite :', error);
     });
-  // });  
   return pokemons;
 };
 
-interface Cursor {
-  limit: Number,
-  offset: Number
-};
+const pokemons: Array<Pokemon> = [];
 
-const MAX_POKEMON = 298;
-const MIN_POKEMON = 1;
-const OFFSET_DEFAULT = 20;
+fetch_pokemons()
+  .then((p) => pokemons.push(...p))
+  .then(() => console.table(pokemons));
 
-const structuredPagination = (): Array<Cursor> => {
-  const cursors: Array<Cursor> = []
-  for (let i = 0; i <= MAX_POKEMON; i = i + OFFSET_DEFAULT) {
-    cursors.push({ "limit": i, "offset": OFFSET_DEFAULT } as Cursor)
-  };
-  cursors.push({
-    "limit": MAX_POKEMON - Math.floor(MAX_POKEMON / OFFSET_DEFAULT),
-    "offset": MAX_POKEMON
-  } as Cursor);
-  return cursors;
-};
 
-console.table(structuredPagination());
-console.table(await fetch_pokemons([{ "limit": 20, "offset": 0 }]));
+
+
