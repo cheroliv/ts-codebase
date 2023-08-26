@@ -2,7 +2,8 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
-import {fetchAndLogPokemonList} from './pokemons.ts'
+import {fetchPokemons} from './pokemons.ts'
+import { structurePagination } from './pokemons.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -22,7 +23,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
 
-fetchAndLogPokemonList();
+console.table(await fetchPokemons());
+
+structurePagination();
 
