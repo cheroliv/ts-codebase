@@ -2,11 +2,43 @@ import './style.css';
 import typescriptLogo from './typescript.svg';
 import viteLogo from '/vite.svg';
 import { setupCounter } from './counter';
+
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+<div>
+  <a href="https://vitejs.dev" target="_blank">
+    <img src="${viteLogo}" class="logo" alt="Vite logo" />
+  </a>
+  <a href="https://www.typescriptlang.org/" target="_blank">
+    <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
+  </a>
+  <h1>Vite + TypeScript</h1>
+  <div class="card">
+    <button id="counter" type="button"></button>
+  </div>
+  <p class="read-the-docs">
+   Pokemons  
+  </p>
+    <table class="table" id="data-table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Id</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider" id="table-body">
+    </tbody>
+  </table>
+</div>
+`;
+
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+
+interface Pokemon {
+  id: Number;
+  name: String;
+};
+
 const pokemons: Array<Pokemon> = [];
-
-
-
-
 
 type Result<T, E> = { type: 'success'; value: T } | { type: 'error'; error: E };
 
@@ -19,11 +51,6 @@ const fetchPokemonList = async (): Promise<Result<any[], string>> => {
     )
     .then(data => ({ type: 'success', value: data.results }))
     .catch(error => ({ type: 'error', error: error.message }));
-};
-
-interface Pokemon {
-  id: Number;
-  name: String;
 };
 
 const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
@@ -49,36 +76,23 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
   return pokemons;
 };
 
-
-const display_pokemons=()=>{
-  console.table(pokemons)
+const display_pokemons = () => {
+  const dataTable = document.getElementById("data-table");
+  const tableBody = document.getElementById("table-body");
+  if (dataTable && tableBody) {
+    let tableHTML = "";
+    pokemons.forEach((pokemon) => {
+      tableHTML+=`
+        <tr>
+          <td>${pokemon.name}</td>
+          <td>${pokemon.id}</td>
+        </tr>
+      `;
+    });
+    tableBody.innerHTML = tableHTML;
+  }
 }
 
-
-
-
-
 fetch_pokemons()
-  .then((p:Array<Pokemon>) => pokemons.push(...p))
-  .then(()=> display_pokemons());
-
- 
-  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<div>
-  <a href="https://vitejs.dev" target="_blank">
-    <img src="${viteLogo}" class="logo" alt="Vite logo" />
-  </a>
-  <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-  </a>
-  <h1>Vite + TypeScript</h1>
-  <div class="card">
-    <button id="counter" type="button"></button>
-  </div>
-  <p class="read-the-docs">
-   Browser: ctrl+maj+I -> console -> Pokemons  
-  </p>
-</div>
-`;
-//     <li> élément </li>
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+  .then((p: Array<Pokemon>) => pokemons.push(...p))
+  .then(() => display_pokemons());

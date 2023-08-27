@@ -1,1 +1,4 @@
 = vite-vanilla-ts
+
+Challenge:
+Afficher la liste des pokemons à partir du template vite-vanilla-ts.
