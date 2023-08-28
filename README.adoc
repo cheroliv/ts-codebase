@@ -1,6 +1,11 @@
+[#toc]
 = Introduction à Typescript
 
+== Intro
 https://cheroliv.github.io/blog/2023/0063_memo_ts_post.html[Mémo Typescript, window="_blank"]
 
-pistes:
+=== Pistes
 * https://www.typescriptlang.org/docs/handbook/dom-manipulation.html[dom-manipulation, window="_blank"]
+
+== Pokemons
+link:02_pokemons/pokemons.adoc#pokemons[Challenge Pokemon]
