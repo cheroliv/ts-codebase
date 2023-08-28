@@ -3,13 +3,24 @@ import typescriptLogo from './typescript.svg';
 import viteLogo from '/vite.svg';
 import { setupCounter } from './counter';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+interface Pokemon {
+  id: Number;
+  name: String;
+};
+
+const pokemons: Array<Pokemon> = [];
+
+document.querySelector<HTMLDivElement>('#pokemons')!.innerHTML = `
 <div>
   <a href="https://vitejs.dev" target="_blank">
-    <img src="${viteLogo}" class="logo" alt="Vite logo" />
+    <img src="${viteLogo}" 
+          class="logo" 
+          alt="Vite logo" />
   </a>
   <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
+    <img src="${typescriptLogo}" 
+          class="logo vanilla" 
+          alt="TypeScript logo" />
   </a>
   <h1>Vite + TypeScript</h1>
   <div class="card">
@@ -18,14 +29,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <p class="read-the-docs">
    Pokemons  
   </p>
-    <table class="table" id="data-table">
+  <table id="data-table"
+        class="table">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Id</th>
         </tr>
     </thead>
-    <tbody class="table-group-divider" id="table-body">
+    <tbody id="table-body"
+          class="table-group-divider">
     </tbody>
   </table>
 </div>
@@ -33,15 +46,24 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
 
-interface Pokemon {
-  id: Number;
-  name: String;
-};
-
-const pokemons: Array<Pokemon> = [];
+const display_pokemons = () => {
+  const dataTable = document.getElementById("data-table");
+  const tableBody = document.getElementById("table-body");
+  if (dataTable && tableBody) {
+    let tableHTML = "";
+    pokemons.forEach((pokemon:Pokemon) => {
+      tableHTML+=`
+        <tr>
+          <td>${pokemon.name}</td>
+          <td>${pokemon.id}</td>
+        </tr>
+      `;
+    });
+    tableBody.innerHTML = tableHTML;
+  }
+}
 
 type Result<T, E> = { type: 'success'; value: T } | { type: 'error'; error: E };
-
 
 const fetchPokemonList = async (): Promise<Result<any[], string>> => {
   return fetch(`https://pokeapi.co/api/v2/ability/?limit=358&offset=0`)
@@ -75,23 +97,6 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
     });
   return pokemons;
 };
-
-const display_pokemons = () => {
-  const dataTable = document.getElementById("data-table");
-  const tableBody = document.getElementById("table-body");
-  if (dataTable && tableBody) {
-    let tableHTML = "";
-    pokemons.forEach((pokemon) => {
-      tableHTML+=`
-        <tr>
-          <td>${pokemon.name}</td>
-          <td>${pokemon.id}</td>
-        </tr>
-      `;
-    });
-    tableBody.innerHTML = tableHTML;
-  }
-}
 
 fetch_pokemons()
   .then((p: Array<Pokemon>) => pokemons.push(...p))
