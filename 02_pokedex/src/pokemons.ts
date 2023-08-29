@@ -1,7 +1,10 @@
 import './style.css';
 import typescriptLogo from './typescript.svg';
 import viteLogo from '/vite.svg';
+import bootstrapLogo from './bootstrap.svg';
+
 import { setupCounter } from './counter';
+import './styles.scss'
 
 interface Pokemon {
   id: Number;
@@ -10,8 +13,9 @@ interface Pokemon {
 
 const pokemons: Array<Pokemon> = [];
 
-document.querySelector<HTMLDivElement>('#pokemons')!.innerHTML = `
-<div>
+document.querySelector<HTMLDivElement>('#pokedex')!.innerHTML = `
+<div class="container py-4 px-3 mx-auto">
+<h1>Pokedex</h1>
   <a href="https://vitejs.dev" target="_blank">
     <img src="${viteLogo}" 
           class="logo" 
@@ -22,7 +26,12 @@ document.querySelector<HTMLDivElement>('#pokemons')!.innerHTML = `
           class="logo vanilla" 
           alt="TypeScript logo" />
   </a>
-  <h1>Vite + TypeScript</h1>
+  <a href="https://getbootstrap.com/" target="_blank">
+    <img src="${bootstrapLogo}" 
+          class="logo vanilla" 
+          alt="Bootstrap logo" />
+  </a>
+
   <div class="card">
     <button id="counter" type="button"></button>
   </div>
@@ -30,8 +39,8 @@ document.querySelector<HTMLDivElement>('#pokemons')!.innerHTML = `
    Pokemons  
   </p>
   <table id="data-table"
-        class="table">
-    <thead>
+         class="table table-dark table-bordered table-hover">
+    <thead class="table-warning">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Id</th>
