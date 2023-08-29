@@ -7,5 +7,5 @@ https://cheroliv.github.io/blog/2023/0063_memo_ts_post.html[Mémo Typescript, wi
 === Pistes
 * https://www.typescriptlang.org/docs/handbook/dom-manipulation.html[dom-manipulation, window="_blank"]
 
-== Pokemons
-link:02_pokemons/pokemons.adoc#pokemons[Challenge Pokemon]
+== Pokedex
+link:02_pokedex/pokemons.adoc#pokemons[Challenge Pokemon]
