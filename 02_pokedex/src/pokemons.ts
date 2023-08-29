@@ -5,6 +5,11 @@ import typescriptLogo from './typescript.svg';
 import viteLogo from '/vite.svg';
 import bootstrapLogo from './bootstrap.svg';
 
+<<<<<<< HEAD:02_pokedex/src/pokemons.ts
+=======
+import { setupCounter } from './counter';
+import './styles.scss'
+>>>>>>> 811dba7a826bdb54bc4c130e71ff1eb5c60ac720:02_pokemons/src/pokemons.ts
 
 interface Pokemon {
   id: Number;
@@ -39,7 +44,11 @@ document.querySelector<HTMLDivElement>('#pokedex')!.innerHTML = `
    Pokemons  
   </p>
   <table id="data-table"
+<<<<<<< HEAD:02_pokedex/src/pokemons.ts
          class="table table-bordered table-hover">
+=======
+         class="table table-dark table-bordered table-hover">
+>>>>>>> 811dba7a826bdb54bc4c130e71ff1eb5c60ac720:02_pokemons/src/pokemons.ts
     <thead class="table-warning">
         <tr>
             <th scope="col">Name</th>
