@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS + Bootstrap</title>
+</head>
+
+<body>
+    <div class="container py-4 px-3 mx-auto">
+        <h1>Pokedex</h1>
+        <div id="stack">
+            <a href="https://vitejs.dev" target="_blank">
+                <img src="${viteLogo}" class="logo" alt="Vite logo" />
+            </a>
+            <a href="https://www.typescriptlang.org/" target="_blank">
+                <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
+            </a>
+            <a href="https://getbootstrap.com/" target="_blank">
+                <img src="${bootstrapLogo}" class="logo vanilla" alt="Bootstrap logo" />
+            </a>
+        </div>
+        <p class="read-the-docs">
+            Pokemons
+        </p>
+        <div id="pokedex">
+            <table id="data-table" class="table table-bordered table-hover">
+                <thead class="table-warning">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Id</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body" class="table-group-divider">
+                    <tr>
+                        <td>stench</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>drizzle</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>speed-boost</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="module" src="/src/pokemons.ts">
+    </script>
+</body>
+
+</html>

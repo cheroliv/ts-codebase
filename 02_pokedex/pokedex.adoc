@@ -1,4 +1,4 @@
-= vite-vanilla-ts
+= Pokedex, vite-vanilla-ts
 
 
 Challenge:

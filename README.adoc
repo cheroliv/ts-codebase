@@ -8,4 +8,7 @@ https://cheroliv.github.io/blog/2023/0063_memo_ts_post.html[Mémo Typescript, wi
 * https://www.typescriptlang.org/docs/handbook/dom-manipulation.html[dom-manipulation, window="_blank"]
 
 == Pokedex
-link:02_pokedex/pokemons.adoc#pokemons[Challenge Pokemon]
+link:02_pokedex/pokedex.adoc#pokemons[Challenge Pokemon]
+
+== Pokedex
+link:03_pokedex_pagination/pokedex_pagination.adoc#pokemons[Challenge Pokemon]
