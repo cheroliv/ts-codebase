@@ -9,25 +9,6 @@ interface Pokemon {
   name: String;
 };
 
-const pokemons: Array<Pokemon> = [];
-
-const display_pokemons = () => {
-  const dataTable = document.getElementById("data-table");
-  const tableBody = document.getElementById("table-body");
-  if (dataTable && tableBody) {
-    let tableHTML = "";
-    pokemons.forEach((pokemon: Pokemon) => {
-      tableHTML += `
-        <tr>
-          <td>${pokemon.name}</td>
-          <td>${pokemon.id}</td>
-        </tr>
-      `;
-    });
-    tableBody.innerHTML = tableHTML;
-  }
-}
-
 type Result<T, E> = { type: 'success'; value: T } | { type: 'error'; error: E };
 
 const fetchPokemonList = async (): Promise<Result<any[], string>> => {
@@ -41,7 +22,7 @@ const fetchPokemonList = async (): Promise<Result<any[], string>> => {
 };
 
 const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
-  let pokemons: Array<Pokemon> = []
+  let pokes: Array<Pokemon> = []
   await fetchPokemonList()
     .then(result => result.type === 'success'
       ? result.value.map((it: { name: string; url: string }) => [
@@ -52,20 +33,34 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
         it.name,
       ])
       : []
-    ).then((mappedResults): Array<Pokemon> => mappedResults.map((element: Array<string | number>) => {
-      return { "id": element[0], "name": element[1] } as Pokemon
+    ).then((res): Array<Pokemon> => res.map((it: Array<string | number>) => {
+      return { "id": it[0], "name": it[1] } as Pokemon
     })).then((it: Array<Pokemon>): Array<Pokemon> => {
-      pokemons = [...it];
-      return pokemons
-    }).catch(error => {
-      console.error('Une erreur s\'est produite :', error);
+      pokes = [...it];
+      return pokes;
+    }).catch(err => {
+      console.error('Une erreur s\'est produite :', err);
     });
-  return pokemons;
+  return pokes;
 };
 
-fetch_pokemons()
-  .then((p: Array<Pokemon>) => pokemons.push(...p))
-  .then(() => display_pokemons());
+const display_pokemons = (pokes: Array<Pokemon>) => {
+  const table = document.getElementById("data-table");
+  const tbody = document.getElementById("table-body");
+  if (table && tbody) {
+    let html = "";
+    pokes.forEach((it: Pokemon) => {
+      html += `
+        <tr>
+          <td>${it.name}</td>
+          <td>${it.id}</td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  }
+}
+
 
 document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
   <div id="stack">
@@ -86,3 +81,8 @@ document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
     </a>
     </div>
     `;
+
+const pokemons: Array<Pokemon> = await fetch_pokemons();
+console.assert(pokemons.length == 358);
+console.table(pokemons);
+display_pokemons(pokemons);

@@ -13,7 +13,7 @@
         <h1>Pokedex</h1>
         <div id="stack">
             <a href="https://vitejs.dev" target="_blank">
-                <img src="${viteLogo}" class="logo" alt="Vite logo" />
+                <img src="${viteLogo}" class="logo vanilla" alt="Vite logo" />
             </a>
             <a href="https://www.typescriptlang.org/" target="_blank">
                 <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
@@ -22,33 +22,83 @@
                 <img src="${bootstrapLogo}" class="logo vanilla" alt="Bootstrap logo" />
             </a>
         </div>
-        <p class="read-the-docs">
-            Pokemons
-        </p>
-        <div id="pokedex">
-            <table id="data-table" class="table table-bordered table-hover">
-                <thead class="table-warning">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Id</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body" class="table-group-divider">
-                    <tr>
-                        <td>stench</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>drizzle</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>speed-boost</td>
-                        <td>3</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
+        <nav id="pokedex_pagination" aria-label="pokemon navigation">
+            <ul class="pagination pagination-lg">
+                <li class="page-item">
+                    <a href="#" class="page-link">&laquo;</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">&lt;</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">1</a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">2</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">3</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">&gt;</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+        <table id="data-table" class="table table-bordered table-hover">
+            <thead class="table-warning">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Id</th>
+                </tr>
+            </thead>
+            <tbody id="table-body" class="table-group-divider">
+                <tr>
+                    <td>stench</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>drizzle</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>speed-boost</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>battle-armor</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>sturdy</td>
+                    <td>5</td>
+                </tr>
+
+                <tr>
+                    <td>limber</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>sand</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>veil</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>static</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>volt-absorb</td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <script type="module" src="/src/pokemons.ts">
     </script>

@@ -1,7 +1,5 @@
+import { describe, expect, test } from 'vitest';
 import { sum } from './sum';
-import { describe } from '@jest/globals';
-import { expect } from '@jest/globals';
-import { test } from '@jest/globals';
 
 
 describe('sum module', () => {
