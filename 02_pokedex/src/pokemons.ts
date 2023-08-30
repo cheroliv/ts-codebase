@@ -1,4 +1,3 @@
-import { setupCounter } from './counter';
 import './style.css';
 import './styles.scss'
 import typescriptLogo from './typescript.svg';
@@ -12,9 +11,8 @@ interface Pokemon {
 
 const pokemons: Array<Pokemon> = [];
 
-document.querySelector<HTMLDivElement>('#pokedex')!.innerHTML = `
-<div class="container py-4 px-3 mx-auto">
-<h1>Pokedex</h1>
+document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
+<div id="stack">
   <a href="https://vitejs.dev" target="_blank">
     <img src="${viteLogo}" 
           class="logo" 
@@ -30,37 +28,16 @@ document.querySelector<HTMLDivElement>('#pokedex')!.innerHTML = `
           class="logo vanilla" 
           alt="Bootstrap logo" />
   </a>
-
-  <div class="card">
-    <button id="counter" type="button"></button>
   </div>
-  <p class="read-the-docs">
-   Pokemons  
-  </p>
-  <table id="data-table"
-         class="table table-bordered table-hover">
-    <thead class="table-warning">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Id</th>
-        </tr>
-    </thead>
-    <tbody id="table-body"
-          class="table-group-divider">
-    </tbody>
-  </table>
-</div>
-`;
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+  `;
 
 const display_pokemons = () => {
   const dataTable = document.getElementById("data-table");
   const tableBody = document.getElementById("table-body");
   if (dataTable && tableBody) {
     let tableHTML = "";
-    pokemons.forEach((pokemon:Pokemon) => {
-      tableHTML+=`
+    pokemons.forEach((pokemon: Pokemon) => {
+      tableHTML += `
         <tr>
           <td>${pokemon.name}</td>
           <td>${pokemon.id}</td>
