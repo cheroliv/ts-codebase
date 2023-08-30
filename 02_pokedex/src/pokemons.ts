@@ -11,26 +11,6 @@ interface Pokemon {
 
 const pokemons: Array<Pokemon> = [];
 
-document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
-<div id="stack">
-  <a href="https://vitejs.dev" target="_blank">
-    <img src="${viteLogo}" 
-          class="logo" 
-          alt="Vite logo" />
-  </a>
-  <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="${typescriptLogo}" 
-          class="logo vanilla" 
-          alt="TypeScript logo" />
-  </a>
-  <a href="https://getbootstrap.com/" target="_blank">
-    <img src="${bootstrapLogo}" 
-          class="logo vanilla" 
-          alt="Bootstrap logo" />
-  </a>
-  </div>
-  `;
-
 const display_pokemons = () => {
   const dataTable = document.getElementById("data-table");
   const tableBody = document.getElementById("table-body");
@@ -86,3 +66,23 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
 fetch_pokemons()
   .then((p: Array<Pokemon>) => pokemons.push(...p))
   .then(() => display_pokemons());
+
+document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
+  <div id="stack">
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="${viteLogo}" 
+            class="logo" 
+            alt="Vite logo" />
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank">
+      <img src="${typescriptLogo}" 
+            class="logo vanilla" 
+            alt="TypeScript logo" />
+    </a>
+    <a href="https://getbootstrap.com/" target="_blank">
+      <img src="${bootstrapLogo}" 
+            class="logo vanilla" 
+            alt="Bootstrap logo" />
+    </a>
+    </div>
+    `;
