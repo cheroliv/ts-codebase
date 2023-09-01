@@ -10,21 +10,24 @@
 // Arrays
 let buddies: any[] = [
     "cheroliv",
-    "imrandeh",
-    "issoudeh",
-    "soumi92"
+    "john.doe",
+    "jane.doe",
+    "john.roe",
+    "richard.roe"
 ]
 
 console.assert(buddies[0] === "cheroliv");
-console.assert(buddies[1] === "imrandeh");
-console.assert(buddies[2] === "issoudeh");
-console.assert(buddies[3] === "soumi92");
+console.assert(buddies[1] === "john.doe");
+console.assert(buddies[2] === "jane.doe");
+console.assert(buddies[3] === "john.roe");
+console.assert(buddies[4] === "richard.roe");
 // Déclaré en type any, l'inference de type 
 // a bien réaligné en type string
 console.assert(typeof buddies[0] === "string");
 console.assert(typeof buddies[1] === "string");
 console.assert(typeof buddies[2] === "string");
 console.assert(typeof buddies[3] === "string");
+console.assert(typeof buddies[4] === "string");
 
 
 
