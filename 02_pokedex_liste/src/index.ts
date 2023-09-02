@@ -4,15 +4,6 @@ import typescriptLogo from "./typescript.svg";
 import viteLogo from "./vite.svg";
 import bootstrapLogo from "./bootstrap.svg";
 
-interface Pokemon {
-  id: number;
-  name: string;
-}
-
-type Result<T, E> = { type: "success"; value: T } | { type: "error"; error: E };
-
-const pokemons: Array<Pokemon> = [];
-
 document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
   <div id="hero">
     <a href="https://vitejs.dev" target="_blank">
@@ -32,6 +23,15 @@ document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
     </a>
     </div>
     `;
+
+interface Pokemon {
+  id: number;
+  name: string;
+}
+
+type Result<T, E> = { type: "success"; value: T } | { type: "error"; error: E };
+
+const pokemons: Array<Pokemon> = [];
 
 const display_pokemons = () => {
   const dataTable = document.getElementById("data-table");
@@ -67,13 +67,13 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
     .then(result =>
       result.type === "success"
         ? result.value.map((it: { name: string; url: string }) => [
-        parseInt(it
-          .url
-          .replace("https://pokeapi.co/api/v2/ability/", "")
-                .replace("/", "")
-            ),
-            it.name,
-          ])
+          parseInt(it
+            .url
+            .replace("https://pokeapi.co/api/v2/ability/", "")
+            .replace("/", "")
+          ),
+          it.name,
+        ])
         : []
     )
     .then(
@@ -92,6 +92,6 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
   return pokemons;
 };
 
-fetch_pokemons()
+await fetch_pokemons()
   .then((p: Array<Pokemon>) => pokemons.push(...p))
   .then(() => display_pokemons());
