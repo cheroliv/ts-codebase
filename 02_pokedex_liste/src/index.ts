@@ -1,21 +1,20 @@
-import './style.css';
-import './styles.scss'
-import typescriptLogo from './typescript.svg';
-import viteLogo from '/vite.svg';
-import bootstrapLogo from './bootstrap.svg';
+import "./style.css";
+import "./styles.scss";
+import typescriptLogo from "./typescript.svg";
+import viteLogo from "./vite.svg";
+import bootstrapLogo from "./bootstrap.svg";
 
 interface Pokemon {
-  id: Number;
-  name: String;
-};
+  id: number;
+  name: string;
+}
 
-type Result<T, E> = { type: 'success'; value: T } | { type: 'error'; error: E };
+type Result<T, E> = { type: "success"; value: T } | { type: "error"; error: E };
 
 const pokemons: Array<Pokemon> = [];
 
-
-document.querySelector<HTMLDivElement>('#stack')!.innerHTML = `
-  <div id="stack">
+document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
+  <div id="hero">
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" 
             class="logo" 
@@ -49,38 +48,46 @@ const display_pokemons = () => {
     });
     tableBody.innerHTML = tableHTML;
   }
-}
-
+};
 
 const fetchPokemonList = async (): Promise<Result<any[], string>> => {
   return fetch(`https://pokeapi.co/api/v2/ability/?limit=358&offset=0`)
-    .then(response => response.ok
-      ? response.json()
-      : Promise.reject(`Network response was not ok: ${response.status}`)
+    .then(response =>
+      response.ok
+        ? response.json()
+        : Promise.reject(`Network response was not ok: ${response.status}`)
     )
-    .then(data => ({ type: 'success', value: data.results }))
-    .catch(error => ({ type: 'error', error: error.message }));
+    .then(data => ({ type: "success", value: data.results }))
+    .catch(error => ({ type: "error", error: error.message }));
 };
 
 const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
-  let pokemons: Array<Pokemon> = []
+  let pokemons: Array<Pokemon> = [];
   await fetchPokemonList()
-    .then(result => result.type === 'success'
-      ? result.value.map((it: { name: string; url: string }) => [
+    .then(result =>
+      result.type === "success"
+        ? result.value.map((it: { name: string; url: string }) => [
         parseInt(it
           .url
           .replace("https://pokeapi.co/api/v2/ability/", "")
-          .replace("/", "")),
-        it.name,
-      ])
-      : []
-    ).then((mappedResults): Array<Pokemon> => mappedResults.map((element: Array<string | number>) => {
-      return { "id": element[0], "name": element[1] } as Pokemon
-    })).then((it: Array<Pokemon>): Array<Pokemon> => {
+                .replace("/", "")
+            ),
+            it.name,
+          ])
+        : []
+    )
+    .then(
+      (mappedResults): Array<Pokemon> =>
+        mappedResults.map((element: Array<string | number>) => {
+          return { id: element[0], name: element[1] } as Pokemon;
+        })
+    )
+    .then((it: Array<Pokemon>): Array<Pokemon> => {
       pokemons = [...it];
-      return pokemons
-    }).catch(error => {
-      console.error('Une erreur s\'est produite :', error);
+      return pokemons;
+    })
+    .catch(error => {
+      console.error("Une erreur s'est produite :", error);
     });
   return pokemons;
 };
@@ -88,4 +95,3 @@ const fetch_pokemons = async (): Promise<Array<Pokemon>> => {
 fetch_pokemons()
   .then((p: Array<Pokemon>) => pokemons.push(...p))
   .then(() => display_pokemons());
-
