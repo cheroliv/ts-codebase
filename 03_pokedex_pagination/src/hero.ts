@@ -3,7 +3,7 @@ import viteLogo from "./vite.svg";
 import bootstrapLogo from "./bootstrap.svg";
 
 const hero = () =>
-  (document.querySelector<HTMLDivElement>("#stack")!.innerHTML = `
+  (document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
       <div id="stack">
         <a href="https://vitejs.dev" target="_blank">
           <img src="${viteLogo}" 

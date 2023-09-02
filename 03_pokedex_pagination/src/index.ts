@@ -25,7 +25,8 @@ const last_cursor: Cursor = {
   position: Math.floor(pokemons.length / 10) + 1,
   pokemons: pokemons.slice(
     Math.floor(pokemons.length / 10) * 10 + 1,
-    pokemons.length),
+    pokemons.length
+  ),
 };
 
 const next_pokemon = (cursor: Cursor): Cursor => {
