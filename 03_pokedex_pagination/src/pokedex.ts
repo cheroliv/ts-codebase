@@ -10,7 +10,6 @@ interface Cursor {
     pokemons: Pokemon[];
 }
 
-
 const fetchPokemonList = async (): Promise<Result<any[], string>> => {
     return fetch(`https://pokeapi.co/api/v2/ability/?limit=358&offset=0`)
         .then(response =>
@@ -69,4 +68,4 @@ const display_pokemons = (pokes: Array<Pokemon>) => {
     }
 };
 
-export { display_pokemons, fetch_pokemons };
+export { Pokemon, Cursor, Result, display_pokemons, fetch_pokemons };
