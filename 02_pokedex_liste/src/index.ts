@@ -3,6 +3,7 @@ import "./styles.scss";
 import typescriptLogo from "./typescript.svg";
 import viteLogo from "./vite.svg";
 import bootstrapLogo from "./bootstrap.svg";
+import { setupCounter } from "./counter";
 
 document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
   <div id="hero">
@@ -23,6 +24,8 @@ document.querySelector<HTMLDivElement>("#hero")!.innerHTML = `
     </a>
     </div>
     `;
+
+setupCounter();
 
 interface Pokemon {
   id: number;
