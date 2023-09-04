@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { sum } from "../src/sum";
 
 describe("pokedex", () => {
-  it("should sum of 2 and 3 equals to 5", () => {
+  it("should size of pokemons equals to 358", () => {
     expect(sum(2, 3)).toEqual(5);
   });
 });
